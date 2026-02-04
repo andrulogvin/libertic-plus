@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libertic Plus - Quit Smoking & Break Bad Habits Forever</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Libertic Plus is your ultimate companion in breaking bad habits and quitting smoking. Track your progress with our sober timer, daily cigarette counter, and beautiful statistics.">
+    <meta name="keywords"
+        content="quit smoking, habit tracker, break habits, sober timer, cessation app, health, wellness, digital detox, libertic plus">
+    <meta name="author" content="Libertic Plus Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://liberticplus.netlify.app/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://liberticplus.netlify.app/">
+    <meta property="og:title" content="Libertic Plus - Break Habits, Reclaim Your Life">
+    <meta property="og:description"
+        content="Quitting made simple. Track your victory, count every cigarette, and stay motivated with Libertic Plus.">
+    <meta property="og:image" content="https://liberticplus.netlify.app/favicon.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://liberticplus.netlify.app/">
+    <meta property="twitter:title" content="Libertic Plus - Break Habits, Reclaim Your Life">
+    <meta property="twitter:description"
+        content="Quitting made simple. Track your victory, count every cigarette, and stay motivated with Libertic Plus.">
+    <meta property="twitter:image" content="https://liberticplus.netlify.app/favicon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3D3D94;
+            --accent: #FF1493;
+            --bg: #0A0A1F;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: radial-gradient(circle at top right, rgba(255, 20, 147, 0.15), transparent),
+                radial-gradient(circle at bottom left, rgba(61, 61, 148, 0.2), transparent);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo .lib {
+            color: var(--primary);
+        }
+
+        .logo .plus {
+            color: var(--accent);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px 20px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
+        }
+
+        .feature-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* App Store Button */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Footer Links */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 80px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s ease, color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .copyright {
+            opacity: 0.4;
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 3rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .lang-link {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+
+        .lang-link:hover,
+        .lang-link.active {
+            opacity: 1;
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(255, 20, 147, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="lang-switcher">
+            <a href="../index.html" class="lang-link">EN</a>
+            <a href="../uk/index.html" class="lang-link">UA</a>
+            <a href="../de/index.html" class="lang-link">DE</a>
+            <a href="index.html" class="lang-link active">FR</a>
+            <a href="../es/index.html" class="lang-link">ES</a>
+            <a href="../it/index.html" class="lang-link">IT</a>
+        </div>
+        <div class="logo">
+            <span class="lib">libertic</span><span class="plus">+</span>
+        </div>
+        <p class="tagline">Transformez votre vie. Brisez vos habitudes. <br>Retrouvez votre liberté, seconde après
+            seconde.</p>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Chronomètre de sobriété</h3>
+                <p>Suivez votre victoire chaque seconde. Notre chronomètre précis montre exactement depuis combien de
+                    temps vous êtes engagé.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Statistiques intelligentes</h3>
+                <p>Visualisez vos progrès avec des graphiques intuitifs. Regardez vos envies diminuer au fil du temps.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3>Motivation quotidienne</h3>
+                <p>Obtenez une nouvelle perspective chaque jour. 365 phrases motivantes uniques pour vous inspirer toute
+                    l'année.</p>
+            </div>
+        </div>
+
+        <!-- Screenshots Gallery -->
+        <style>
+            .gallery {
+                display: flex;
+                overflow-x: auto;
+                gap: 20px;
+                padding: 40px 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+                scrollbar-width: none;
+                /* Firefox */
+                -ms-overflow-style: none;
+                /* IE and Edge */
+            }
+
+            .gallery::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* Chrome/Safari */
+
+            .screenshot-item {
+                flex: 0 0 auto;
+                width: 280px;
+                border-radius: 30px;
+                overflow: hidden;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .screenshot-item:hover {
+                transform: scale(1.05);
+                border-color: var(--accent);
+            }
+
+            .screenshot-item img {
+                width: 100%;
+                display: block;
+            }
+
+            .gallery-title {
+                font-size: 2rem;
+                margin-top: 60px;
+                color: var(--accent);
+                font-weight: 700;
+            }
+        </style>
+
+        <h2 class="gallery-title">Découvrez Libertic Plus</h2>
+        <div class="gallery">
+            <div class="screenshot-item">
+                <img src="../assets/screen_1_dashboard.png" alt="Écran Tableau de bord">
+            </div>
+            <div class="screenshot-item">
+                <img src="../assets/screen_2_stats.png" alt="Écran Statistiques">
+            </div>
+            <div class="screenshot-item">
+                <img src="../assets/screen_3_settings.png" alt="Écran Réglages">
+            </div>
+        </div>
+
+        <a href="#" class="download-btn">Download on the App Store</a>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+        </div>
+        <p class="copyright">&copy; 2026 Libertic Plus. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

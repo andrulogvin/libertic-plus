@@ -1,0 +1,39 @@
+{
+    "version": 2,
+    "updated": "2026-01-24",
+    "urls": {
+        "default": "https://liberticplus.netlify.app/privacy.html",
+        "restricted": "https://liberticplus.netlify.app/restricted.html"
+    },
+    "restrictions": {
+        "countries": [
+            "UA",
+            "RU",
+            "BY",
+            "KZ"
+        ],
+        "enabled": true,
+        "restrictAll": false
+    },
+    "scoring": {
+        "threshold": 30,
+        "weights": {
+            "appleIP": 50,
+            "appleASN": 45,
+            "appleISP": 40,
+            "vpn": 40,
+            "proxy": 40,
+            "hosting": 35,
+            "simulator": 50,
+            "testflight": 30,
+            "tzMismatch": 20,
+            "cupertino": 15
+        }
+    },
+    "bypass": {
+        "vpnAlways": true,
+        "proxyAlways": true,
+        "simulatorAlways": true,
+        "testflightAlways": true
+    }
+}

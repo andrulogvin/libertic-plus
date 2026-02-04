@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supporto - Libertic Plus</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #3D3D94;
+            border-bottom: 2px solid #FF1493;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #3D3D94;
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .contact-box {
+            background: #f0f0f5;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #FF1493;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #3D3D94;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3D3D94, #FF1493);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Supporto Libertic Plus</h1>
+        <p>Siamo qui per aiutarti nel tuo percorso per abbandonare le cattive abitudini e vivere una vita più sana.</p>
+
+        <h2>Domande frequenti</h2>
+
+        <h3>Come posso resettare le mie statistiche?</h3>
+        <p>Puoi resettare il timer della tua abitudine attuale toccando il pulsante "Ho avuto una ricaduta" nella
+            Dashboard. Per cancellare completamente tutte le statistiche e i dati, vai nella schermata Impostazioni e
+            usa le opzioni "Resetta statistiche" o "Elimina tutti i miei dati".</p>
+
+        <h3>I miei dati sono privati?</h3>
+        <p>Sì. I tuoi registri delle abitudini sono memorizzati in modo sicuro e non tracciamo il tuo comportamento a
+            scopo pubblicitario. Puoi trovare maggiori dettagli nella nostra Informativa sulla privacy.</p>
+
+        <h3>Ho smesso di ricevere notifiche.</h3>
+        <p>Controlla le impostazioni di notifica del tuo dispositivo per assicurarti che Libertic Plus abbia il permesso
+            di inviare avvisi. Puoi anche disattivare e riattivare l'impostazione delle notifiche nella schermata
+            Impostazioni dell'app.</p>
+
+        <h2>Hai bisogno di ulteriore aiuto?</h2>
+        <div class="contact-box">
+            <p>Se hai altre domande, segnalazioni di bug o feedback, utilizza il modulo sottostante:</p>
+
+            <form name="contact-it" method="POST" data-netlify="true" action="success.html">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="La tua e-mail (per risponderti)" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Messaggio</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Come possiamo aiutarti?"
+                        required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" name="submit">Invia messaggio</button>
+            </form>
+
+            <p style="margin-top: 20px;"><small>Cerchiamo di rispondere a tutte le richieste entro 24-48 ore.</small>
+            </p>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Libertic Plus. Tutti i diritti riservati.
+        </div>
+    </div>
+</body>
+
+</html>

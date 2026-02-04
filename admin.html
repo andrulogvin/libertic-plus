@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель керування - Libertic Plus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo .plus {
+            color: #FF1493;
+        }
+
+        .logo .admin {
+            color: #888;
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            background: transparent;
+            color: #888;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 20, 147, 0.2);
+            border-color: #FF1493;
+            color: #FF1493;
+        }
+
+        .status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #FF1493;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .toggle-label {
+            font-size: 14px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider::before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked+.toggle-slider {
+            background: #FF1493;
+        }
+
+        .toggle input:checked+.toggle-slider::before {
+            transform: translateX(24px);
+        }
+
+        .weights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .weights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .weight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .weight-item label {
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .weight-item input {
+            padding: 8px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF1493 0%, #D800A6 100%);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-left: 10px;
+        }
+
+        .tags-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            min-height: 50px;
+        }
+
+        .tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 20, 147, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .tag-remove {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .tag-remove:hover {
+            opacity: 1;
+        }
+
+        #newCountry {
+            flex: 1;
+            min-width: 80px;
+            background: transparent;
+            border: none;
+            padding: 6px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .modal textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .alert {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .alert-error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #f44336;
+        }
+
+        .info-card {
+            background: rgba(33, 150, 243, 0.1);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .info-card h3 {
+            color: #2196F3;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                libertic<span class="plus">+</span>
+                <span class="admin" data-i18n="adminPanel">/ панель керування</span>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" onclick="setLang('uk')">UA</button>
+            </div>
+            <div class="status" id="status" data-i18n="loading">● Завантаження...</div>
+        </div>
+
+        <div class="alert alert-success" id="alertSuccess" data-i18n="savedAlert">✓ Налаштування збережено! Задеплойте
+            на Netlify для застосування.</div>
+        <div class="alert alert-error" id="alertError" data-i18n="errorAlert">✗ Помилка завантаження налаштувань</div>
+
+        <!-- How it works -->
+        <div class="info-card">
+            <h3 data-i18n="howItWorksTitle">📖 Як це працює</h3>
+            <p data-i18n="howItWorksText">
+                При запуску iOS додаток відправляє дані пристрою на сервер. Сервер аналізує IP-адресу, визначає чи це
+                VPN/Proxy,
+                обчислює "score" і повертає відповідний URL. Якщо score ≥ порогу або виявлено VPN — показується чиста
+                версія (privacy.html).
+                Якщо користувач з обмеженої країни без VPN — показується заглушка (restricted.html).
+            </p>
+        </div>
+
+        <!-- URLs Section -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🔗</span> <span data-i18n="urlsTitle">URL контенту</span></div>
+            <div class="row">
+                <div class="form-group">
+                    <label data-i18n="urlDefault">URL за замовчуванням (чиста версія)</label>
+                    <input type="text" id="urlDefault" value="https://liberticplus.netlify.app/privacy.html">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="urlRestricted">URL обмеженої версії (заглушка)</label>
+                    <input type="text" id="urlRestricted" value="https://liberticplus.netlify.app/restricted.html">
+                </div>
+            </div>
+        </div>
+
+        <!-- Restrictions Section -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🌍</span> <span data-i18n="geoTitle">Географічні обмеження</span>
+            </div>
+
+            <div class="toggle-group">
+                <span class="toggle-label" data-i18n="enableGeo">Увімкнути гео-обмеження</span>
+                <label class="toggle">
+                    <input type="checkbox" id="restrictionsEnabled" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="toggle-group">
+                <span class="toggle-label" data-i18n="restrictAll">🔒 Обмежити ВСІ країни (крім VPN/Apple)</span>
+                <label class="toggle">
+                    <input type="checkbox" id="restrictAll">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;" id="countriesSection">
+                <label data-i18n="countriesLabel">Обмежені країни (2-символьні коди)</label>
+                <div class="tags-input" id="countriesContainer">
+                    <input type="text" id="newCountry" placeholder="Додати код..." maxlength="2">
+                </div>
+            </div>
+
+            <!-- Explanation block -->
+            <div
+                style="margin-top: 16px; padding: 16px; background: rgba(255,152,0,0.1); border: 1px solid rgba(255,152,0,0.3); border-radius: 8px;">
+                <p style="font-size: 13px; color: #FFB74D; margin-bottom: 12px;"><strong>⚠️ <span
+                            data-i18n="geoExplainTitle">Як працюють обмеження:</span></strong></p>
+
+                <div style="font-size: 12px; color: #aaa; line-height: 1.8;">
+                    <p style="margin-bottom: 10px;" data-i18n="geoExplainInList">
+                        <strong style="color:#f44336">🚫 Країна В СПИСКУ</strong> (або увімкнено "ВСІ країни"):<br>
+                        • Без VPN → <code>restricted.html</code> (заглушка)<br>
+                        • З VPN/Proxy → <code>privacy.html</code> (повна версія)
+                    </p>
+                    <p style="margin-bottom: 10px;" data-i18n="geoExplainNotInList">
+                        <strong style="color:#4CAF50">✅ Країна НЕ в списку:</strong><br>
+                        • Завжди → <code>privacy.html</code> (повна версія)
+                    </p>
+                    <p style="color: #2196F3;" data-i18n="geoExplainApple">
+                        📱 <em>Рев'юери Apple завжди бачать повну версію (їхній IP = Apple/VPN)</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bypass Rules -->
+        <div class="card">
+            <div class="card-title"><span class="icon">⚡</span> <span data-i18n="bypassTitle">Правила обходу</span>
+            </div>
+            <p style="color: #888; font-size: 13px; margin-bottom: 16px;" data-i18n="bypassDesc">Коли увімкнено, ці
+                умови завжди показують чисту версію:</p>
+
+            <div class="toggle-group">
+                <span class="toggle-label" data-i18n="bypassVpn">VPN/Proxy виявлено → Чиста версія</span>
+                <label class="toggle">
+                    <input type="checkbox" id="bypassVpn" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="toggle-group">
+                <span class="toggle-label" data-i18n="bypassProxy">IP дата-центру → Чиста версія</span>
+                <label class="toggle">
+                    <input type="checkbox" id="bypassProxy" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="toggle-group">
+                <span class="toggle-label" data-i18n="bypassSim">iOS Симулятор → Чиста версія</span>
+                <label class="toggle">
+                    <input type="checkbox" id="bypassSimulator" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="toggle-group">
+                <span class="toggle-label" data-i18n="bypassTf">TestFlight збірка → Чиста версія</span>
+                <label class="toggle">
+                    <input type="checkbox" id="bypassTestflight" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Scoring -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📊</span> <span data-i18n="scoringTitle">Скоринг
+                    визначення</span></div>
+
+            <div class="form-group">
+                <label data-i18n="thresholdLabel">Поріг (показати чисту версію якщо score ≥ цього значення)</label>
+                <input type="number" id="threshold" value="30" min="0" max="200" style="width: 120px;">
+            </div>
+
+            <label style="margin-bottom: 12px;" data-i18n="weightsLabel">Ваги сигналів</label>
+            <div class="weights-grid">
+                <div class="weight-item">
+                    <label>Apple IP</label>
+                    <input type="number" id="weightAppleIP" value="50" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label>Apple ASN</label>
+                    <input type="number" id="weightAppleASN" value="45" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label>Apple ISP</label>
+                    <input type="number" id="weightAppleISP" value="40" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label>VPN</label>
+                    <input type="number" id="weightVpn" value="40" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label>Proxy</label>
+                    <input type="number" id="weightProxy" value="40" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label>Hosting</label>
+                    <input type="number" id="weightHosting" value="35" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label data-i18n="weightSim">Симулятор</label>
+                    <input type="number" id="weightSimulator" value="50" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label>TestFlight</label>
+                    <input type="number" id="weightTestflight" value="30" min="0" max="100">
+                </div>
+                <div class="weight-item">
+                    <label data-i18n="weightTz">Різниця TZ</label>
+                    <input type="number" id="weightTzMismatch" value="20" min="0" max="100">
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="saveSettings()" data-i18n="saveBtn">💾 Зберегти налаштування</button>
+    </div>
+
+    <!-- Save Modal -->
+    <div class="modal" id="saveModal">
+        <div class="modal-content">
+            <div class="modal-title" data-i18n="modalTitle">📋 Оновлені налаштування</div>
+            <p style="color: #888; margin-bottom: 16px;" data-i18n="modalDesc">Скопіюйте цей JSON і замініть вміст
+                <code>settings.json</code>, потім задеплойте на Netlify:
+            </p>
+            <textarea id="jsonOutput" readonly></textarea>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="copyToClipboard()" data-i18n="copyBtn">📋 Скопіювати</button>
+                <button class="btn btn-secondary" onclick="closeModal()" data-i18n="closeBtn">Закрити</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // i18n translations
+        const i18n = {
+            en: {
+                adminPanel: "/ admin panel",
+                loading: "● Loading...",
+                connected: "● Connected",
+                error: "● Error",
+                savedAlert: "✓ Settings saved! Deploy to Netlify to apply changes.",
+                errorAlert: "✗ Error loading settings",
+                howItWorksTitle: "📖 How it works",
+                howItWorksText: "When iOS app starts, it sends device data to the server. The server analyzes the IP address, detects VPN/Proxy, calculates a score, and returns the appropriate URL. If score ≥ threshold or VPN detected — shows clean version (privacy.html). If user is from restricted country without VPN — shows stub (restricted.html).",
+                urlsTitle: "Content URLs",
+                urlDefault: "Default URL (Clean Version)",
+                urlRestricted: "Restricted URL (Stub Page)",
+                geoTitle: "Geo Restrictions",
+                enableGeo: "Enable geo restrictions",
+                restrictAll: "🔒 Restrict ALL countries (except VPN/Apple)",
+                countriesLabel: "Restricted countries (2-letter codes)",
+                geoExplainTitle: "How restrictions work:",
+                geoExplainInList: "🚫 Country IN LIST (or 'ALL countries' enabled): • Without VPN → restricted.html (stub) • With VPN/Proxy → privacy.html (full version)",
+                geoExplainNotInList: "✅ Country NOT in list: • Always → privacy.html (full version)",
+                geoExplainApple: "📱 Apple reviewers always see full version (their IP = Apple/VPN)",
+                bypassTitle: "Bypass Rules",
+                bypassDesc: "When enabled, these conditions will always show the clean version:",
+                bypassVpn: "VPN/Proxy detected → Clean version",
+                bypassProxy: "Data Center IP → Clean version",
+                bypassSim: "iOS Simulator → Clean version",
+                bypassTf: "TestFlight build → Clean version",
+                scoringTitle: "Detection Scoring",
+                thresholdLabel: "Threshold (show clean version if score ≥ this value)",
+                weightsLabel: "Signal Weights",
+                weightSim: "Simulator",
+                weightTz: "TZ Mismatch",
+                saveBtn: "💾 Save Settings",
+                modalTitle: "📋 Updated Settings",
+                modalDesc: "Copy this JSON and replace the contents of settings.json, then deploy to Netlify:",
+                copyBtn: "📋 Copy to Clipboard",
+                closeBtn: "Close"
+            },
+            uk: {
+                adminPanel: "/ панель керування",
+                loading: "● Завантаження...",
+                connected: "● Підключено",
+                error: "● Помилка",
+                savedAlert: "✓ Налаштування збережено! Задеплойте на Netlify для застосування.",
+                errorAlert: "✗ Помилка завантаження налаштувань",
+                howItWorksTitle: "📖 Як це працює",
+                howItWorksText: "При запуску iOS додаток відправляє дані пристрою на сервер. Сервер аналізує IP-адресу, визначає чи це VPN/Proxy, обчислює «score» і повертає відповідний URL. Якщо score ≥ порогу або виявлено VPN — показується чиста версія (privacy.html). Якщо користувач з обмеженої країни без VPN — показується заглушка (restricted.html).",
+                urlsTitle: "URL контенту",
+                urlDefault: "URL за замовчуванням (чиста версія)",
+                urlRestricted: "URL обмеженої версії (заглушка)",
+                geoTitle: "Географічні обмеження",
+                enableGeo: "Увімкнути гео-обмеження",
+                restrictAll: "🔒 Обмежити ВСІ країни (крім VPN/Apple)",
+                countriesLabel: "Обмежені країни (2-символьні коди)",
+                geoExplainTitle: "Як працюють обмеження:",
+                geoExplainInList: "🚫 Країна В СПИСКУ (або увімкнено \"ВСІ країни\"): • Без VPN → restricted.html (заглушка) • З VPN/Proxy → privacy.html (повна версія)",
+                geoExplainNotInList: "✅ Країна НЕ в списку: • Завжди → privacy.html (повна версія)",
+                geoExplainApple: "📱 Рев'юери Apple завжди бачать повну версію (їхній IP = Apple/VPN)",
+                bypassTitle: "Правила обходу",
+                bypassDesc: "Коли увімкнено, ці умови завжди показують чисту версію:",
+                bypassVpn: "VPN/Proxy виявлено → Чиста версія",
+                bypassProxy: "IP дата-центру → Чиста версія",
+                bypassSim: "iOS Симулятор → Чиста версія",
+                bypassTf: "TestFlight збірка → Чиста версія",
+                scoringTitle: "Скоринг визначення",
+                thresholdLabel: "Поріг (показати чисту версію якщо score ≥ цього значення)",
+                weightsLabel: "Ваги сигналів",
+                weightSim: "Симулятор",
+                weightTz: "Різниця TZ",
+                saveBtn: "💾 Зберегти налаштування",
+                modalTitle: "📋 Оновлені налаштування",
+                modalDesc: "Скопіюйте цей JSON і замініть вміст settings.json, потім задеплойте на Netlify:",
+                copyBtn: "📋 Скопіювати",
+                closeBtn: "Закрити"
+            }
+        };
+
+        let currentLang = 'uk';
+        let settings = {};
+        let countries = ['UA', 'RU', 'BY', 'KZ'];
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.textContent = i18n[lang][key];
+                }
+            });
+        }
+
+        async function loadSettings() {
+            try {
+                const response = await fetch('/settings.json?' + Date.now());
+                settings = await response.json();
+                populateForm();
+                document.getElementById('status').textContent = i18n[currentLang].connected;
+                document.getElementById('status').style.background = 'rgba(76, 175, 80, 0.2)';
+            } catch (e) {
+                document.getElementById('status').textContent = i18n[currentLang].error;
+                document.getElementById('status').style.background = 'rgba(244, 67, 54, 0.2)';
+                document.getElementById('status').style.color = '#f44336';
+                // Keep defaults pre-filled
+            }
+        }
+
+        function populateForm() {
+            document.getElementById('urlDefault').value = settings.urls?.default || 'https://liberticplus.netlify.app/privacy.html';
+            document.getElementById('urlRestricted').value = settings.urls?.restricted || 'https://liberticplus.netlify.app/restricted.html';
+
+            document.getElementById('restrictionsEnabled').checked = settings.restrictions?.enabled ?? true;
+            document.getElementById('restrictAll').checked = settings.restrictions?.restrictAll ?? false;
+            countries = settings.restrictions?.countries || ['UA', 'RU', 'BY', 'KZ'];
+            renderCountries();
+            updateCountriesVisibility();
+
+            document.getElementById('bypassVpn').checked = settings.bypass?.vpnAlways ?? true;
+            document.getElementById('bypassProxy').checked = settings.bypass?.proxyAlways ?? true;
+            document.getElementById('bypassSimulator').checked = settings.bypass?.simulatorAlways ?? true;
+            document.getElementById('bypassTestflight').checked = settings.bypass?.testflightAlways ?? true;
+
+            document.getElementById('threshold').value = settings.scoring?.threshold || 30;
+            const w = settings.scoring?.weights || {};
+            document.getElementById('weightAppleIP').value = w.appleIP || 50;
+            document.getElementById('weightAppleASN').value = w.appleASN || 45;
+            document.getElementById('weightAppleISP').value = w.appleISP || 40;
+            document.getElementById('weightVpn').value = w.vpn || 40;
+            document.getElementById('weightProxy').value = w.proxy || 40;
+            document.getElementById('weightHosting').value = w.hosting || 35;
+            document.getElementById('weightSimulator').value = w.simulator || 50;
+            document.getElementById('weightTestflight').value = w.testflight || 30;
+            document.getElementById('weightTzMismatch').value = w.tzMismatch || 20;
+        }
+
+        function renderCountries() {
+            const container = document.getElementById('countriesContainer');
+            const input = document.getElementById('newCountry');
+            container.innerHTML = '';
+
+            countries.forEach((c, i) => {
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.innerHTML = `${c} <span class="tag-remove" onclick="removeCountry(${i})">×</span>`;
+                container.appendChild(tag);
+            });
+
+            container.appendChild(input);
+        }
+
+        function removeCountry(index) {
+            countries.splice(index, 1);
+            renderCountries();
+        }
+
+        function updateCountriesVisibility() {
+            const restrictAll = document.getElementById('restrictAll').checked;
+            const countriesSection = document.getElementById('countriesSection');
+            countriesSection.style.display = restrictAll ? 'none' : 'block';
+        }
+
+        document.getElementById('restrictAll').addEventListener('change', updateCountriesVisibility);
+
+        document.getElementById('newCountry').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ',') {
+                e.preventDefault();
+                const val = this.value.trim().toUpperCase();
+                if (val.length === 2 && !countries.includes(val)) {
+                    countries.push(val);
+                    renderCountries();
+                }
+                this.value = '';
+            }
+        });
+
+        function saveSettings() {
+            const newSettings = {
+                version: (settings.version || 0) + 1,
+                updated: new Date().toISOString().split('T')[0],
+                urls: {
+                    default: document.getElementById('urlDefault').value,
+                    restricted: document.getElementById('urlRestricted').value
+                },
+                restrictions: {
+                    countries: countries,
+                    enabled: document.getElementById('restrictionsEnabled').checked,
+                    restrictAll: document.getElementById('restrictAll').checked
+                },
+                scoring: {
+                    threshold: parseInt(document.getElementById('threshold').value) || 30,
+                    weights: {
+                        appleIP: parseInt(document.getElementById('weightAppleIP').value) || 50,
+                        appleASN: parseInt(document.getElementById('weightAppleASN').value) || 45,
+                        appleISP: parseInt(document.getElementById('weightAppleISP').value) || 40,
+                        vpn: parseInt(document.getElementById('weightVpn').value) || 40,
+                        proxy: parseInt(document.getElementById('weightProxy').value) || 40,
+                        hosting: parseInt(document.getElementById('weightHosting').value) || 35,
+                        simulator: parseInt(document.getElementById('weightSimulator').value) || 50,
+                        testflight: parseInt(document.getElementById('weightTestflight').value) || 30,
+                        tzMismatch: parseInt(document.getElementById('weightTzMismatch').value) || 20,
+                        cupertino: 15
+                    }
+                },
+                bypass: {
+                    vpnAlways: document.getElementById('bypassVpn').checked,
+                    proxyAlways: document.getElementById('bypassProxy').checked,
+                    simulatorAlways: document.getElementById('bypassSimulator').checked,
+                    testflightAlways: document.getElementById('bypassTestflight').checked
+                }
+            };
+
+            document.getElementById('jsonOutput').value = JSON.stringify(newSettings, null, 2);
+            document.getElementById('saveModal').classList.add('active');
+        }
+
+        function copyToClipboard() {
+            const textarea = document.getElementById('jsonOutput');
+            textarea.select();
+            document.execCommand('copy');
+
+            document.getElementById('alertSuccess').style.display = 'block';
+            closeModal();
+
+            setTimeout(() => {
+                document.getElementById('alertSuccess').style.display = 'none';
+            }, 5000);
+        }
+
+        function closeModal() {
+            document.getElementById('saveModal').classList.remove('active');
+        }
+
+        // Init
+        renderCountries();
+        loadSettings();
+    </script>
+</body>
+
+</html>
